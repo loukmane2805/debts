@@ -1,137 +1,194 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>دفتر الديون</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Almarai:wght@400;700&family=Reem+Kufi:wght@600&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#eef2ec;--grid:rgba(19,51,58,.07);--card:#fbfcf9;--ink:#13333a;--muted:#55696d;--line:#cbd7cf;--debt:#b3261e;--paid:#1b7f4b;--debt-bg:#b3261e;--paid-bg:#1b7f4b;--on:#fff;--btn:#13333a;--on-btn:#fff;
-box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1b1e;--grid:rgba(230,240,236,.06);--card:#162428;--ink:#e6f0ec;--muted:#92abae;--line:#294045;--debt:#ff8f86;--paid:#72d69c;--debt-bg:#c9443b;--paid-bg:#23925a;--btn:#e6f0ec;--on-btn:#0f1b1e}}
-:root[data-theme="dark"]{--bg:#0f1b1e;--grid:rgba(230,240,236,.06);--card:#162428;--ink:#e6f0ec;--muted:#92abae;--line:#294045;--debt:#ff8f86;--paid:#72d69c;--debt-bg:#c9443b;--paid-bg:#23925a;--btn:#e6f0ec;--on-btn:#0f1b1e}
-*,*::before,*::after{box-sizing:inherit}
-html{scroll-padding-top:env(safe-area-inset-top,0px)}
-[hidden]{display:none!important}
-body{margin:0;min-height:100vh;background-color:var(--bg);background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:22px 22px;color:var(--ink);font-family:'Almarai',system-ui,'Segoe UI',Tahoma,sans-serif;font-size:16px;line-height:1.6}
-main{max-width:560px;margin:0 auto;padding:18px 16px 40px}
-h1,h2,.total strong{font-family:'Reem Kufi','Almarai',system-ui,sans-serif;font-weight:600;margin:0}
-h1{font-size:30px;margin-bottom:14px}
-h2{font-size:26px;margin:6px 0 12px}
-.total{display:flex;justify-content:space-between;align-items:baseline;gap:12px;border-block:2px solid var(--ink);padding:10px 2px;margin-bottom:16px}
-.total span{color:var(--muted)}
-.total strong{font-size:32px}
-input{width:100%;min-height:48px;padding:10px 12px;border:1.5px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink);font:inherit;margin-bottom:10px}
-input:focus,button:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
-.add{display:flex;gap:8px}
-.add input{margin-bottom:0}
-.add{margin-bottom:16px}
-.btn{min-height:48px;padding:0 16px;border:0;border-radius:8px;background:var(--btn);color:var(--on-btn);font:inherit;font-weight:700;cursor:pointer;white-space:nowrap}
-.btn.dbt{background:var(--debt-bg);color:var(--on)}
-.btn.pay{background:var(--paid-bg);color:var(--on)}
-.two{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px}
-.lnk{background:none;border:0;color:var(--ink);font:inherit;text-decoration:underline;padding:10px 0;min-height:44px;cursor:pointer}
-.lnk.warn{color:var(--debt);margin-top:18px}
-.row{display:flex;justify-content:space-between;align-items:center;gap:10px;width:100%;min-height:58px;padding:10px 14px;margin-bottom:8px;background:var(--card);border:1px solid var(--line);border-inline-start:5px solid var(--paid);border-radius:8px;color:var(--ink);font:inherit;text-align:start;cursor:pointer}
-.row.owes{border-inline-start-color:var(--debt)}
-.row .nm{font-weight:700;overflow-wrap:anywhere}
-.bl{font-family:'Reem Kufi','Almarai',sans-serif;font-size:18px;white-space:nowrap;color:var(--paid)}
-.owes .bl,.bl.owes{color:var(--debt)}
-.tx{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 4px;border-bottom:1px dashed var(--line)}
-.tx .sub{display:block;color:var(--muted);font-size:14px}
-.tx .am{font-family:'Reem Kufi','Almarai',sans-serif;font-size:18px;white-space:nowrap}
-.tx.d .am{color:var(--debt)}
-.tx.p .am{color:var(--paid)}
-.tx .x{background:none;border:0;color:var(--muted);font:inherit;font-size:14px;text-decoration:underline;min-height:44px;padding:0 6px;cursor:pointer}
-.empty,.note{color:var(--muted);font-size:14px}
-.empty{padding:18px 4px}
-.note{margin-top:24px}
+:root{--bg:#eef1f5;--card:#fff;--ink:#1c2530;--mute:#6a7686;--line:#d6dce5;--debt:#b3261e;--paid:#1f7a4d;--blue:#24478f}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Cairo,Tahoma,sans-serif;line-height:1.6}
+main{max-width:560px;margin:0 auto;padding:16px 14px 80px}
+h1{font-size:1.5rem;font-weight:800;margin:0}
+h2{font-size:1.1rem;margin:20px 0 8px}
+input{width:100%;padding:12px;margin:0 0 10px;border:1.5px solid var(--line);border-radius:8px;font:inherit;background:#fff;color:var(--ink)}
+input:focus,button:focus-visible{outline:3px solid #9db4e6;outline-offset:1px}
+button{font:inherit;font-weight:600;border:0;border-radius:8px;padding:12px 16px;cursor:pointer;background:var(--blue);color:#fff}
+button.ghost{background:transparent;color:var(--blue);border:1.5px solid var(--blue)}
+button.debt{background:var(--debt)}button.pay{background:var(--paid)}
+.row{display:flex;gap:8px}.row>*{flex:1}
+.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.top button{padding:8px 12px}
+.total{background:var(--ink);color:#fff;border-radius:12px;padding:18px;margin-bottom:14px}
+.total small{opacity:.75;display:block}
+.total b{font-size:2rem;font-weight:800}
+.item{display:flex;justify-content:space-between;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin-bottom:8px;cursor:pointer}
+.item small{color:var(--mute);display:block}
+.amt{font-weight:800;white-space:nowrap}.amt.d{color:var(--debt)}.amt.z{color:var(--mute)}
+.tx{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px dashed var(--line)}
+.tx small{color:var(--mute);display:block}
+.d{color:var(--debt)}.p{color:var(--paid)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:12px}
+.err{color:var(--debt);min-height:1.5em;margin:4px 0}
+.empty{text-align:center;color:var(--mute);padding:28px 0}
+.hide{display:none}
 </style>
 </head>
 <body>
 <main>
-<section id="home">
-<h1>دفتر الديون</h1>
-<div class="total"><span>المجموع المستحق لك</span><strong id="tot">0 دج</strong></div>
-<input id="q" type="search" placeholder="ابحث عن زبون" aria-label="ابحث عن زبون">
-<div class="add"><input id="nm" placeholder="اسم الزبون الجديد" aria-label="اسم الزبون الجديد"><button id="addc" class="btn">إضافة زبون</button></div>
-<div id="list"></div>
-<p class="note">البيانات محفوظة على هذا الجهاز فقط داخل المتصفح. لا تمسح بيانات المتصفح حتى لا تضيع.</p>
+
+<section id="login" class="hide">
+  <h1 style="margin-top:40px">دفتر الديون</h1>
+  <p style="color:var(--mute)">سجّل دخولك لتجد ديون زبائنك على أي هاتف.</p>
+  <div class="card">
+    <input id="email" type="email" placeholder="البريد الإلكتروني" autocomplete="email" dir="ltr">
+    <input id="pass" type="password" placeholder="كلمة المرور (6 أحرف على الأقل)" autocomplete="current-password" dir="ltr">
+    <div class="err" id="loginErr"></div>
+    <div class="row">
+      <button id="btnLogin">تسجيل الدخول</button>
+      <button id="btnSignup" class="ghost">إنشاء حساب</button>
+    </div>
+  </div>
 </section>
-<section id="det" hidden>
-<button id="back" class="lnk">الرجوع إلى الزبائن</button>
-<h2 id="dn"></h2>
-<div class="total"><span>الرصيد</span><strong id="db"></strong></div>
-<input id="am" inputmode="decimal" placeholder="المبلغ بالدينار" aria-label="المبلغ بالدينار">
-<input id="nt" placeholder="ملاحظة (اختياري)" aria-label="ملاحظة">
-<div class="two"><button id="bd" class="btn dbt">تسجيل دين</button><button id="bp" class="btn pay">تسجيل دفعة</button></div>
-<div id="hist"></div>
-<button id="dc" class="lnk warn">حذف الزبون</button>
+
+<section id="list" class="hide">
+  <div class="top"><h1>دفتر الديون</h1><button class="ghost" id="btnLogout">خروج</button></div>
+  <div class="total"><small>مجموع ما لك عند الزبائن</small><b id="total">0</b> DA</div>
+  <input id="search" placeholder="ابحث عن زبون">
+  <div id="customers"></div>
+  <h2>زبون جديد</h2>
+  <div class="card">
+    <input id="newName" placeholder="اسم الزبون">
+    <input id="newPhone" type="tel" placeholder="رقم الهاتف (اختياري)" dir="ltr">
+    <button id="btnAddCustomer" style="width:100%">إضافة الزبون</button>
+  </div>
 </section>
+
+<section id="detail" class="hide">
+  <div class="top"><button class="ghost" id="btnBack">رجوع</button><span id="dPhone" dir="ltr" style="color:var(--mute)"></span></div>
+  <div class="total"><small id="dName"></small><b id="dBalance">0</b> DA</div>
+  <div class="card">
+    <input id="amount" type="number" inputmode="decimal" min="0" placeholder="المبلغ بالدينار">
+    <input id="note" placeholder="ملاحظة (اختياري)">
+    <div class="err" id="txErr"></div>
+    <div class="row">
+      <button class="debt" id="btnDebt">سجّل دينًا</button>
+      <button class="pay" id="btnPay">سجّل دفعة</button>
+    </div>
+  </div>
+  <h2>السجل</h2>
+  <div id="history"></div>
+</section>
+
 </main>
-<script>
-var K='debt_book_v1',db={c:[]},cur=null,q='';
-try{var r=localStorage.getItem(K);if(r){var p=JSON.parse(r);if(p&&Array.isArray(p.c))db=p}}catch(e){}
-function save(){try{localStorage.setItem(K,JSON.stringify(db))}catch(e){}}
-function $(s){return document.querySelector(s)}
-function fmt(n){return Number(n).toLocaleString('en-US',{maximumFractionDigits:2})+' دج'}
-function bal(c){return c.tx.reduce(function(s,x){return s+(x.t==='d'?x.a:-x.a)},0)}
-function day(t){return new Date(t).toLocaleDateString('en-GB')}
-function el(tag,cls,text){var e=document.createElement(tag);if(cls)e.className=cls;if(text!=null)e.textContent=text;return e}
-function sure(btn,fn){if(btn.dataset.s){fn();return}btn.dataset.s='1';btn.dataset.t=btn.textContent;btn.textContent='اضغط مرة أخرى للتأكيد';setTimeout(function(){delete btn.dataset.s;btn.textContent=btn.dataset.t},3000)}
-function balText(b){return b>0?fmt(b):b<0?'رصيد للزبون '+fmt(-b):'لا دين'}
-function drawHome(){
-  $('#tot').textContent=fmt(db.c.reduce(function(s,c){return s+Math.max(bal(c),0)},0));
-  var box=$('#list');box.replaceChildren();
-  var list=db.c.filter(function(c){return !q||c.name.indexOf(q)>-1}).sort(function(a,b){return bal(b)-bal(a)});
-  if(!list.length){box.append(el('p','empty',db.c.length?'لا يوجد زبون بهذا الاسم.':'لا يوجد زبائن بعد. اكتب اسم أول زبون واضغط إضافة زبون.'));return}
-  list.forEach(function(c){
-    var b=bal(c),row=el('button','row'+(b>0?' owes':''));
-    row.append(el('span','nm',c.name),el('span','bl',balText(b)));
-    row.onclick=function(){openC(c.id)};
-    box.append(row);
+
+<script type="module">
+import {initializeApp} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+import {getAuth,onAuthStateChanged,signInWithEmailAndPassword,createUserWithEmailAndPassword,signOut} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+import {getFirestore,collection,doc,addDoc,onSnapshot,query,orderBy,writeBatch,increment,serverTimestamp} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDlL7M8VtxBxlYkc4u_oyRxL0YKZLhSzEQ",
+  authDomain: "debts-notebook.firebaseapp.com",
+  projectId: "debts-notebook",
+  storageBucket: "debts-notebook.firebasestorage.app",
+  messagingSenderId: "779357840731",
+  appId: "1:779357840731:web:14c82341b8d3baef55e67e"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+const $ = id => document.getElementById(id);
+const fmt = n => Number(n||0).toLocaleString("en-US");
+const esc = s => String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const show = id => ["login","list","detail"].forEach(s=>$(s).classList.toggle("hide",s!==id));
+
+const msgs = {
+  "auth/invalid-credential":"البريد أو كلمة المرور غير صحيحة.",
+  "auth/invalid-email":"البريد الإلكتروني غير صالح.",
+  "auth/email-already-in-use":"هذا البريد مسجّل من قبل، اضغط تسجيل الدخول.",
+  "auth/weak-password":"كلمة المرور قصيرة، استعمل 6 أحرف على الأقل.",
+  "auth/missing-password":"اكتب كلمة المرور.",
+  "auth/network-request-failed":"لا يوجد اتصال بالإنترنت.",
+  "auth/api-key-not-valid.-please-pass-a-valid-api-key.":"مفتاح apiKey غير صحيح، انسخه من إعدادات المشروع مرة أخرى."
+};
+
+let uid=null, customers=[], current=null, unsubList=null, unsubTx=null;
+
+async function authAction(fn){
+  $("loginErr").textContent="";
+  try{ await fn(auth,$("email").value.trim(),$("pass").value); }
+  catch(e){ $("loginErr").textContent = msgs[e.code] || ("خطأ: "+e.code); }
+}
+$("btnLogin").onclick = () => authAction(signInWithEmailAndPassword);
+$("btnSignup").onclick = () => authAction(createUserWithEmailAndPassword);
+$("btnLogout").onclick = () => signOut(auth);
+
+onAuthStateChanged(auth, user => {
+  unsubList && unsubList(); unsubTx && unsubTx();
+  if(!user){ uid=null; show("login"); return; }
+  uid = user.uid; show("list");
+  const q = query(collection(db,"users",uid,"customers"), orderBy("name"));
+  unsubList = onSnapshot(q, snap => {
+    customers = snap.docs.map(d=>({id:d.id,...d.data()}));
+    renderList();
+    if(current){ const c=customers.find(x=>x.id===current); c ? renderHead(c) : showList(); }
+  }, e => { $("customers").innerHTML = '<div class="empty">تعذّر تحميل البيانات: '+esc(e.code)+'</div>'; });
+});
+
+function renderList(){
+  const term = $("search").value.trim().toLowerCase();
+  const rows = customers.filter(c => !term || (c.name||"").toLowerCase().includes(term));
+  $("total").textContent = fmt(customers.reduce((s,c)=>s+(c.balance||0),0));
+  $("customers").innerHTML = rows.length ? rows.map(c =>
+    `<div class="item" data-id="${c.id}"><div>${esc(c.name)}<small dir="ltr" style="text-align:right">${esc(c.phone||"")}</small></div>
+     <span class="amt ${c.balance>0?"d":"z"}">${fmt(c.balance)} DA</span></div>`).join("")
+    : '<div class="empty">'+(customers.length?"لا نتيجة لهذا البحث.":"لا يوجد زبائن بعد. أضف أول زبون من الأسفل.")+'</div>';
+}
+$("search").oninput = renderList;
+$("customers").onclick = e => { const it=e.target.closest(".item"); if(it) openCustomer(it.dataset.id); };
+
+$("btnAddCustomer").onclick = async () => {
+  const name=$("newName").value.trim();
+  if(!name) return $("newName").focus();
+  await addDoc(collection(db,"users",uid,"customers"),{name,phone:$("newPhone").value.trim(),balance:0,createdAt:serverTimestamp()});
+  $("newName").value=""; $("newPhone").value="";
+};
+
+function renderHead(c){
+  $("dName").textContent=c.name; $("dPhone").textContent=c.phone||"";
+  $("dBalance").textContent=fmt(c.balance);
+}
+function openCustomer(id){
+  current=id; renderHead(customers.find(c=>c.id===id)); show("detail");
+  $("amount").value=""; $("note").value=""; $("txErr").textContent="";
+  unsubTx && unsubTx();
+  const q=query(collection(db,"users",uid,"customers",id,"tx"),orderBy("at","desc"));
+  unsubTx=onSnapshot(q,snap=>{
+    $("history").innerHTML = snap.empty ? '<div class="empty">لا توجد عمليات بعد.</div>' :
+      snap.docs.map(d=>{const t=d.data();const date=t.at?t.at.toDate().toLocaleDateString("ar-DZ"):"";
+        return `<div class="tx"><div>${t.type==="debt"?"دين":"دفعة"}<small>${esc(t.note||"")} ${date}</small></div>
+        <b class="${t.type==="debt"?"d":"p"}">${t.type==="debt"?"+":"−"}${fmt(t.amount)} DA</b></div>`}).join("");
   });
 }
-function openC(id){cur=id;$('#home').hidden=true;$('#det').hidden=false;$('#am').value='';$('#nt').value='';drawDet();window.scrollTo(0,0)}
-function curC(){return db.c.find(function(c){return c.id===cur})}
-function drawDet(){
-  var c=curC();if(!c)return;
-  var b=bal(c);
-  $('#dn').textContent=c.name;
-  var d=$('#db');d.textContent=balText(b);d.style.color=b>0?'var(--debt)':'var(--paid)';
-  var h=$('#hist');h.replaceChildren();
-  if(!c.tx.length)h.append(el('p','empty','لا توجد عمليات بعد. اكتب المبلغ ثم اضغط تسجيل دين أو تسجيل دفعة.'));
-  for(var i=c.tx.length-1;i>=0;i--){(function(i){
-    var x=c.tx[i],row=el('div','tx '+x.t),left=el('div'),del=el('button','x','حذف');
-    left.append(el('b',null,x.t==='d'?'دين':'دفعة'),el('span','sub',day(x.d)));
-    if(x.n)left.append(el('span','sub',x.n));
-    del.onclick=function(){sure(del,function(){c.tx.splice(i,1);save();drawDet()})};
-    row.append(left,el('span','am',(x.t==='d'?'+ ':'- ')+fmt(x.a)),del);
-    h.append(row);
-  })(i)}
+function showList(){ current=null; unsubTx && unsubTx(); show("list"); }
+$("btnBack").onclick = showList;
+
+async function addTx(type){
+  const amount=parseFloat($("amount").value);
+  if(!(amount>0)){ $("txErr").textContent="اكتب مبلغًا أكبر من صفر."; return; }
+  $("txErr").textContent="";
+  const batch=writeBatch(db);
+  const cref=doc(db,"users",uid,"customers",current);
+  batch.set(doc(collection(cref,"tx")),{type,amount,note:$("note").value.trim(),at:serverTimestamp()});
+  batch.update(cref,{balance:increment(type==="debt"?amount:-amount)});
+  try{ await batch.commit(); $("amount").value=""; $("note").value=""; }
+  catch(e){ $("txErr").textContent="تعذّر الحفظ: "+e.code; }
 }
-function num(v){return parseFloat(String(v).replace(/[٠-٩]/g,function(d){return d.charCodeAt(0)-1632}).replace('٫','.').replace(',','.'))}
-function addTx(t){
-  var a=num($('#am').value),c=curC();
-  if(!(a>0)){$('#am').focus();return}
-  c.tx.push({t:t,a:a,n:$('#nt').value.trim(),d:Date.now()});
-  $('#am').value='';$('#nt').value='';save();drawDet();
-}
-function addC(){
-  var n=$('#nm').value.trim();
-  if(!n){$('#nm').focus();return}
-  db.c.unshift({id:Date.now(),name:n,tx:[]});
-  $('#nm').value='';save();drawHome();
-}
-$('#addc').onclick=addC;
-$('#nm').onkeydown=function(e){if(e.key==='Enter')addC()};
-$('#q').oninput=function(e){q=e.target.value.trim();drawHome()};
-$('#back').onclick=function(){cur=null;$('#det').hidden=true;$('#home').hidden=false;drawHome()};
-$('#bd').onclick=function(){addTx('d')};
-$('#bp').onclick=function(){addTx('p')};
-$('#dc').onclick=function(){var b=$('#dc');sure(b,function(){db.c=db.c.filter(function(c){return c.id!==cur});save();$('#back').onclick()})};
-drawHome();
+$("btnDebt").onclick = () => addTx("debt");
+$("btnPay").onclick = () => addTx("pay");
 </script>
 </body>
 </html>
